@@ -23,8 +23,8 @@ namespace DoCCryptTool
                 var headerSeedArray = new byte[] { 136, 86, 49, 149, 241, 163, 137, 87 };
                 var bodySeedArray = new byte[] { 1, 0, 0, 0, 0, 0, 0, 0 };
 
-                var keyblocksTableHeader = Generator.GenerateKeyblocksTable(headerSeedArray, false);
-                var keyblocksTableBody = Generator.GenerateKeyblocksTable(bodySeedArray, false);
+                var keyblocksTableHeader = Generators.GenerateKeyblocksTable(headerSeedArray, false);
+                var keyblocksTableBody = Generators.GenerateKeyblocksTable(bodySeedArray, false);
 
 
                 uint readPos = 0;

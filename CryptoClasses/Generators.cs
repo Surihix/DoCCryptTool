@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace DoCCryptTool.CryptoClasses
 {
-    internal class Generator
+    internal class Generators
     {
         public static byte[] GenerateKeyblocksTable(byte[] seedArray, bool logDisplay)
         {
@@ -93,7 +93,23 @@ namespace DoCCryptTool.CryptoClasses
         {
             byte[] bitmask = new byte[16];
 
+            int a, b, c, d;
+            int m = 0;
 
+            while (m < 8)
+            {
+                a = 0x000039BA << (0x00000008 - m);
+                b = 0x0000C261 << m;
+                b = (b ^ a) >> 8;
+                bitmask[m + 8] = (byte)b; // the bitmask uses 1 byte elements, so anything extraneous is shaved off.
+
+                c = 0x000083D1 << m;
+                d = 0x00002EEF << (0x00000008 - m);
+                d = (d ^ c) >> 8;
+                bitmask[m] = (byte)d;
+
+                m++;
+            }
 
             return bitmask;
         }

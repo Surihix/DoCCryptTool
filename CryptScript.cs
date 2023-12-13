@@ -26,7 +26,7 @@ namespace DoCCryptTool
                 var seedArray = inFileReader.ReadBytes(8);
                 Array.Reverse(seedArray);
 
-                var keyblocksTable = Generator.GenerateKeyblocksTable(seedArray, false);
+                var keyblocksTable = Generators.GenerateKeyblocksTable(seedArray, false);
 
 
                 uint readPos = 8;

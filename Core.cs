@@ -82,6 +82,7 @@ namespace DoCCryptTool
                         break;
 
                     case CryptType.kelstr:
+                        CryptKelStr.ProcessKelStr(cryptAction, inFile);
                         break;
                 }
             }
