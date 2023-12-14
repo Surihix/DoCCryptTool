@@ -17,7 +17,7 @@ namespace DoCCryptTool
                 case CryptActions.e:
                     if (inFileReader.ReadUInt64() != 1)
                     {
-                        ExitType.Error.ExitProgram("Specified file is not a valid txt bin file.");
+                        ExitType.Error.ExitProgram("Specified file is not decrypted correctly or may not be a valid txt bin file.");
                     }
 
                     inFileReader.BaseStream.Position = 20;
