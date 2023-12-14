@@ -39,14 +39,14 @@ namespace DoCCryptTool.CryptoClasses
             BlockCounterFval |= blockCounterDval;
         }
 
-        public static void XORblockSetup(byte[] xorTable, uint xorTableOffset, ref uint xorBlockLowerVal, ref uint xorBlockHigherVal)
+        public static void KeyblockSetup(byte[] keyblocksTable, uint tableOffset, ref uint keyblockLowerVal, ref uint keyblockHigherVal)
         {
-            var currentXORblock = new byte[] { xorTable[xorTableOffset + 0], xorTable[xorTableOffset + 1], 
-                xorTable[xorTableOffset + 2], xorTable[xorTableOffset + 3], xorTable[xorTableOffset + 4], 
-                xorTable[xorTableOffset + 5], xorTable[xorTableOffset + 6], xorTable[xorTableOffset + 7] };
+            var currentKeyblock = new byte[] { keyblocksTable[tableOffset + 0], keyblocksTable[tableOffset + 1], 
+                keyblocksTable[tableOffset + 2], keyblocksTable[tableOffset + 3], keyblocksTable[tableOffset + 4], 
+                keyblocksTable[tableOffset + 5], keyblocksTable[tableOffset + 6], keyblocksTable[tableOffset + 7] };
 
-            xorBlockLowerVal = BitConverter.ToUInt32(currentXORblock, 0);
-            xorBlockHigherVal = BitConverter.ToUInt32(currentXORblock, 4);
+            keyblockLowerVal = BitConverter.ToUInt32(currentKeyblock, 0);
+            keyblockHigherVal = BitConverter.ToUInt32(currentKeyblock, 4);
         }
 
         public static void SpecialKeySetup(ref uint carryFlag, ref long specialKey1, ref long specialKey2)

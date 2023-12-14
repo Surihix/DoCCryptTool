@@ -7,7 +7,7 @@ namespace DoCCryptTool.CryptoClasses
     {
         public static byte[] GenerateKeyblocksTable(byte[] seedArray, bool logDisplay)
         {
-            var finalBlocksTable = new byte[256];
+            var finalKeyblocksTable = new byte[256];
 
             var seedHalfA = BitConverter.ToUInt32(seedArray, 0);
             var seedHalfB = BitConverter.ToUInt32(seedArray, 4);
@@ -31,7 +31,7 @@ namespace DoCCryptTool.CryptoClasses
                 i++;
             }
 
-            Array.ConstrainedCopy(keyblock, 0, finalBlocksTable, 0, keyblock.Length);
+            Array.ConstrainedCopy(keyblock, 0, finalKeyblocksTable, 0, keyblock.Length);
 
             if (logDisplay)
             {
@@ -76,7 +76,7 @@ namespace DoCCryptTool.CryptoClasses
                     Console.WriteLine($"Block {i}: {keyblock[0]:X2} {keyblock[1]:X2} {keyblock[2]:X2} {keyblock[3]:X2} " +
                         $"{keyblock[4]:X2} {keyblock[5]:X2} {keyblock[6]:X2} {keyblock[7]:X2}");
                 }
-                Array.ConstrainedCopy(keyblock, 0, finalBlocksTable, copyIndex, keyblock.Length);
+                Array.ConstrainedCopy(keyblock, 0, finalKeyblocksTable, copyIndex, keyblock.Length);
 
                 previousKeyBlock = BitConverter.ToUInt64(keyblock, 0);
                 i++;
@@ -85,7 +85,7 @@ namespace DoCCryptTool.CryptoClasses
 
             //File.WriteAllBytes("KeysDump", finalBlocksTable);
 
-            return finalBlocksTable;
+            return finalKeyblocksTable;
         }
 
 

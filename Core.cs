@@ -18,6 +18,8 @@ namespace DoCCryptTool
                 "To encrypt a text bin file: DoCCryptTool.exe -e -txtbin \"string_us.bin\"",
                 "To encrypt a class file: DoCCryptTool.exe -e -script \"gmap.class\"",
                 "To encrypt kelstr.bin file: DoCCryptTool.exe -e -kelstr \"kelstr.bin\"", "",
+                "Important:", "Change the filename mentioned in the example to the name or path of" +
+                "\nthe file that you are trying to decrypt or encrypt.", ""
             };
 
             var actionSwitchesMsgArray = new string[]

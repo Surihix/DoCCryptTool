@@ -5,7 +5,7 @@ namespace DoCCryptTool.CryptoClasses
 {
     internal class Encryption
     {
-        public static void EncryptBlocks(byte[] xorTable, uint blockCount, uint readPos, uint writePos, BinaryReader inFileReader, BinaryWriter encryptedStreamBinWriter, bool logDisplay)
+        public static void EncryptBlocks(byte[] keyblocksTable, uint blockCount, uint readPos, uint writePos, BinaryReader inFileReader, BinaryWriter encryptedStreamBinWriter, bool logDisplay)
         {
             uint blockCounter = 0;
 
@@ -26,14 +26,14 @@ namespace DoCCryptTool.CryptoClasses
 
 
                 // Setup BlockCounter variables
-                uint xorTableOffset = 0;
-                CryptoBase.BlockCounterSetup(blockCounter, ref xorTableOffset);
+                uint tableOffset = 0;
+                CryptoBase.BlockCounterSetup(blockCounter, ref tableOffset);
 
 
-                // Setup xorBlock variables
-                uint xorBlockLowerVal = 0;
-                uint xorBlockHigherVal = 0;
-                CryptoBase.XORblockSetup(xorTable, xorTableOffset, ref xorBlockLowerVal, ref xorBlockHigherVal);
+                // Setup keyblock variables
+                uint keyblockLowerVal = 0;
+                uint keyblockHigherVal = 0;
+                CryptoBase.KeyblockSetup(keyblocksTable, tableOffset, ref keyblockLowerVal, ref keyblockHigherVal);
 
 
                 // Setup SpecialKey variables
@@ -44,20 +44,20 @@ namespace DoCCryptTool.CryptoClasses
 
 
                 // XOR the bytes to encrypt 
-                // with the xorBlock variables
-                bytesToEncryptLowerVal ^= xorBlockLowerVal;
-                bytesToEncryptHigherVal ^= xorBlockHigherVal;
+                // with the keyblock variables
+                bytesToEncryptLowerVal ^= keyblockLowerVal;
+                bytesToEncryptHigherVal ^= keyblockHigherVal;
 
 
                 // XOR the bytes to encrypt 
                 // with the SpecialKey
                 // variables and increase the
-                // bytes with the xorBlock variables
+                // bytes with the keyblock variables
                 bytesToEncryptLowerVal ^= specialKey1;
                 bytesToEncryptHigherVal ^= specialKey2;
 
-                bytesToEncryptLowerVal += xorBlockLowerVal;
-                bytesToEncryptHigherVal += xorBlockHigherVal;
+                bytesToEncryptLowerVal += keyblockLowerVal;
+                bytesToEncryptHigherVal += keyblockHigherVal;
 
 
                 // Get the lowermostbits value of the bytes and
@@ -67,7 +67,7 @@ namespace DoCCryptTool.CryptoClasses
                 // value bytes with the carryFlag value
                 long bytesToEncryptLowerValFixed = bytesToEncryptLowerVal & 0xFFFFFFFF;
 
-                if (bytesToEncryptLowerValFixed < xorBlockLowerVal)
+                if (bytesToEncryptLowerValFixed < keyblockLowerVal)
                 {
                     carryFlag = 1;
                 }
@@ -94,28 +94,28 @@ namespace DoCCryptTool.CryptoClasses
                 // the byte value 8 times
                 // and perform a XOR
                 // operation
-                var encryptedByte1 = computedBytesArray[0].LoopAByteReverse(xorTable, xorTableOffset);
+                var encryptedByte1 = computedBytesArray[0].LoopAByteReverse(keyblocksTable, tableOffset);
                 encryptedByte1 = ((currentBlockId ^ 69) & 255) ^ encryptedByte1;
 
-                var encryptedByte2 = computedBytesArray[1].LoopAByteReverse(xorTable, xorTableOffset);
+                var encryptedByte2 = computedBytesArray[1].LoopAByteReverse(keyblocksTable, tableOffset);
                 encryptedByte2 = encryptedByte1 ^ encryptedByte2;
 
-                var encryptedByte3 = computedBytesArray[2].LoopAByteReverse(xorTable, xorTableOffset);
+                var encryptedByte3 = computedBytesArray[2].LoopAByteReverse(keyblocksTable, tableOffset);
                 encryptedByte3 = encryptedByte2 ^ encryptedByte3;
 
-                var encryptedByte4 = computedBytesArray[3].LoopAByteReverse(xorTable, xorTableOffset);
+                var encryptedByte4 = computedBytesArray[3].LoopAByteReverse(keyblocksTable, tableOffset);
                 encryptedByte4 = encryptedByte3 ^ encryptedByte4;
 
-                var encryptedByte5 = computedBytesArray[4].LoopAByteReverse(xorTable, xorTableOffset);
+                var encryptedByte5 = computedBytesArray[4].LoopAByteReverse(keyblocksTable, tableOffset);
                 encryptedByte5 = encryptedByte4 ^ encryptedByte5;
 
-                var encryptedByte6 = computedBytesArray[5].LoopAByteReverse(xorTable, xorTableOffset);
+                var encryptedByte6 = computedBytesArray[5].LoopAByteReverse(keyblocksTable, tableOffset);
                 encryptedByte6 = encryptedByte5 ^ encryptedByte6;
 
-                var encryptedByte7 = computedBytesArray[6].LoopAByteReverse(xorTable, xorTableOffset);
+                var encryptedByte7 = computedBytesArray[6].LoopAByteReverse(keyblocksTable, tableOffset);
                 encryptedByte7 = encryptedByte6 ^ encryptedByte7;
 
-                var encryptedByte8 = computedBytesArray[7].LoopAByteReverse(xorTable, xorTableOffset);
+                var encryptedByte8 = computedBytesArray[7].LoopAByteReverse(keyblocksTable, tableOffset);
                 encryptedByte8 = encryptedByte7 ^ encryptedByte8;
 
 
