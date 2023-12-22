@@ -25,7 +25,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -43,20 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Checks.cs" />
-    <Compile Include="Core.cs" />
-    <Compile Include="CryptScript.cs" />
-    <Compile Include="CryptKelStr.cs" />
-    <Compile Include="CryptTxtBin.cs" />
-    <Compile Include="CryptoClasses\CryptoBase.cs" />
-    <Compile Include="CryptoClasses\CryptoFunctions.cs" />
-    <Compile Include="CryptoClasses\Decryption.cs" />
-    <Compile Include="CryptoClasses\Encryption.cs" />
-    <Compile Include="CryptoClasses\IntegersArray.cs" />
-    <Compile Include="CryptoClasses\Generators.cs" />
+    <Compile Include="DoCCryptTool\Checks.cs" />
+    <Compile Include="DoCCryptTool\Core.cs" />
+    <Compile Include="DoCCryptTool\CryptScript.cs" />
+    <Compile Include="DoCCryptTool\CryptKelStr.cs" />
+    <Compile Include="DoCCryptTool\CryptTxtBin.cs" />
+    <Compile Include="DoCCryptTool\CryptoClasses\CryptoBase.cs" />
+    <Compile Include="DoCCryptTool\CryptoClasses\CryptoFunctions.cs" />
+    <Compile Include="DoCCryptTool\CryptoClasses\Decryption.cs" />
+    <Compile Include="DoCCryptTool\CryptoClasses\Encryption.cs" />
+    <Compile Include="DoCCryptTool\CryptoClasses\IntegersArray.cs" />
+    <Compile Include="DoCCryptTool\CryptoClasses\Generators.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SupportClasses\ToolEnums.cs" />
-    <Compile Include="SupportClasses\ToolHelpers.cs" />
+    <Compile Include="DoCCryptTool\SupportClasses\ToolEnums.cs" />
+    <Compile Include="DoCCryptTool\SupportClasses\ToolHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
