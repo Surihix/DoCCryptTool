@@ -13,11 +13,13 @@ namespace DoCCryptTool
             {
                 "Examples:",
                 "To decrypt a text bin file: DoCCryptTool.exe -d -txtbin \"string_us.bin\"",
-                "To decrypt a class file: DoCCryptTool.exe -d -script \"gmap.class\"", 
-                "To decrypt kelstr.bin file: DoCCryptTool.exe -d -kelstr \"kelstr.bin\"", "",
+                "To decrypt a class file: DoCCryptTool.exe -d -script \"gmap.class\"",
+                "To decrypt kelstr.bin file: DoCCryptTool.exe -d -kelstr \"kelstr.bin\"",
+                "To decrypt an at3 bgm file: DoCCryptTool.exe -d -at3 \"bgm_004.at3\"", "",
                 "To encrypt a text bin file: DoCCryptTool.exe -e -txtbin \"string_us.bin\"",
                 "To encrypt a class file: DoCCryptTool.exe -e -script \"gmap.class\"",
-                "To encrypt kelstr.bin file: DoCCryptTool.exe -e -kelstr \"kelstr.bin\"", "",
+                "To encrypt kelstr.bin file: DoCCryptTool.exe -e -kelstr \"kelstr.bin\"",
+                "To encrypt an at3 bgm file: DoCCryptTool.exe -d -at3 \"bgm_004.at3\"", "",
                 "Important:", "Change the filename mentioned in the example to the name or path of" +
                 "\nthe file that you are trying to decrypt or encrypt.", ""
             };
@@ -29,7 +31,7 @@ namespace DoCCryptTool
 
             var cryptTypeSwitchesMsgArray = new string[]
             {
-                "Crypt Type Switches:", "-txtbin = For text bin files", "-script = For class files", "-kelstr = For kelstr.bin files"
+                "Crypt Type Switches:", "-txtbin = For text bin files", "-script = For class files", "-kelstr = For kelstr.bin files", "-at3 = For at3 bgm files"
             };
 
 
@@ -86,6 +88,10 @@ namespace DoCCryptTool
                     case CryptType.kelstr:
                         CryptKelStr.ProcessKelStr(cryptAction, inFile);
                         break;
+
+                    case CryptType.at3:
+                        CryptAT3.ProcessAT3(cryptAction, inFile);
+                        break;
                 }
             }
             catch (Exception ex)
@@ -98,7 +104,8 @@ namespace DoCCryptTool
         {
             txtbin,
             script,
-            kelstr
+            kelstr,
+            at3
         }
     }
 }

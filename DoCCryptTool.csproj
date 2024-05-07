@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="DoCCryptTool\Checks.cs" />
     <Compile Include="DoCCryptTool\Core.cs" />
+    <Compile Include="DoCCryptTool\CryptAT3.cs" />
     <Compile Include="DoCCryptTool\CryptScript.cs" />
     <Compile Include="DoCCryptTool\CryptKelStr.cs" />
     <Compile Include="DoCCryptTool\CryptTxtBin.cs" />
