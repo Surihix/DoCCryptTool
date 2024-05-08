@@ -35,31 +35,31 @@ namespace DoCCryptTool
                         using (var encDataWriter = new BinaryWriter(File.Open(inFile + ".enc", FileMode.Open, FileAccess.Write)))
                         {
                             long readAmount = inFileReader.BaseStream.Length;
-                            long bytesToRead = 0x60;
+                            long bytesToRead = 96;
                             long readPos = 0;
 
                             while (bytesToRead != 0)
                             {
-                                bytesToRead = Math.Min(readAmount, 0x60);
+                                bytesToRead = Math.Min(readAmount, 96);
                                 readAmount -= bytesToRead;
 
                                 inFileReader.BaseStream.Position = readPos;
-                                var bytesToProcess = inFileReader.ReadBytes((int)bytesToRead);
+                                var bytesToProcessPreXOR = inFileReader.ReadBytes((int)bytesToRead);
 
-                                var bytesToProcess2 = new byte[bytesToRead];
-                                Array.Copy(bytesToProcess, bytesToProcess2, bytesToRead);
+                                var bytesToProcessXOR = new byte[bytesToRead];
+                                Array.Copy(bytesToProcessPreXOR, bytesToProcessXOR, bytesToRead);
 
                                 for (int i = 0; i < bytesToRead; i++)
                                 {
-                                    bytesToProcess[i] ^= at3keys[i];
+                                    bytesToProcessXOR[i] ^= at3keys[i];
 
                                     for (int j = 0; j < i / 16; j++)
                                     {
-                                        bytesToProcess[i] ^= bytesToProcess2[i - (j + 1) * 0x10];
+                                        bytesToProcessXOR[i] ^= bytesToProcessPreXOR[i - (j + 1) * 16];
                                     }
                                 }
 
-                                encDataWriter.Write(bytesToProcess);
+                                encDataWriter.Write(bytesToProcessXOR);
 
                                 readPos += bytesToRead;
                             }
@@ -86,12 +86,12 @@ namespace DoCCryptTool
                         using (var decryptedDataWriter = new BinaryWriter(File.Open(inFile + ".dec", FileMode.Append, FileAccess.Write)))
                         {
                             long readAmount = inFileReader.BaseStream.Length;
-                            long bytesToRead = 0x60;
+                            long bytesToRead = 96;
                             long readPos = 0;
 
                             while (bytesToRead != 0)
                             {
-                                bytesToRead = Math.Min(readAmount, 0x60);
+                                bytesToRead = Math.Min(readAmount, 96);
                                 readAmount -= bytesToRead;
 
                                 inFileReader.BaseStream.Position = readPos;
@@ -103,7 +103,7 @@ namespace DoCCryptTool
 
                                     for (int j = 0; j < i / 16; j++)
                                     {
-                                        bytesToProcess[i] ^= bytesToProcess[i - (j + 1) * 0x10];
+                                        bytesToProcess[i] ^= bytesToProcess[i - (j + 1) * 16];
                                     }
                                 }
 

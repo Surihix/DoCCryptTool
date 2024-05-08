@@ -9,6 +9,7 @@ namespace DoCCryptTool.SupportClasses
         public static void ExitProgram(this ExitType exitType, string exitMsg)
         {
             var exitMsgType = "";
+            var exitCode = 0;
 
             switch (exitType)
             {
@@ -18,13 +19,19 @@ namespace DoCCryptTool.SupportClasses
 
                 case ExitType.Error:
                     exitMsgType = "Error: ";
+                    exitCode = 1;
                     break;
             }
 
             Console.WriteLine("");
             Console.WriteLine($"{exitMsgType}{exitMsg}");
-            Console.ReadLine();
-            Environment.Exit(0);
+
+            if (exitCode == 1)
+            {
+                Console.ReadLine();
+            }
+
+            Environment.Exit(exitCode);
         }
 
         public static void ExCopyTo(this Stream inStream, Stream outStream, long size)

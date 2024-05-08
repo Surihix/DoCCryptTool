@@ -1,6 +1,7 @@
 ﻿using DoCCryptTool.SupportClasses;
 using System;
 using System.IO;
+using System.Linq;
 using static DoCCryptTool.SupportClasses.ToolEnums;
 
 namespace DoCCryptTool
@@ -15,25 +16,32 @@ namespace DoCCryptTool
                 "To decrypt a text bin file: DoCCryptTool.exe -d -txtbin \"string_us.bin\"",
                 "To decrypt a class file: DoCCryptTool.exe -d -script \"gmap.class\"",
                 "To decrypt kelstr.bin file: DoCCryptTool.exe -d -kelstr \"kelstr.bin\"",
-                "To decrypt an at3 bgm file: DoCCryptTool.exe -d -at3 \"bgm_004.at3\"", "",
+                "To decrypt an .at3 bgm file: DoCCryptTool.exe -d -at3 \"bgm_004.at3\"", "",
                 "To encrypt a text bin file: DoCCryptTool.exe -e -txtbin \"string_us.bin\"",
                 "To encrypt a class file: DoCCryptTool.exe -e -script \"gmap.class\"",
                 "To encrypt kelstr.bin file: DoCCryptTool.exe -e -kelstr \"kelstr.bin\"",
-                "To encrypt an at3 bgm file: DoCCryptTool.exe -d -at3 \"bgm_004.at3\"", "",
+                "To encrypt an .at3 bgm file: DoCCryptTool.exe -e -at3 \"bgm_004.at3\"", "",
                 "Important:", "Change the filename mentioned in the example to the name or path of" +
                 "\nthe file that you are trying to decrypt or encrypt.", ""
             };
 
             var actionSwitchesMsgArray = new string[]
             {
-                "Action Switches:", "-d = To Decrypt", "-e = To Encrypt"
+                "Action Switches:", "-d = To Decrypt", "-e = To Encrypt", "-h or -? = To display tool instructions"
             };
 
             var cryptTypeSwitchesMsgArray = new string[]
             {
-                "Crypt Type Switches:", "-txtbin = For text bin files", "-script = For class files", "-kelstr = For kelstr.bin files", "-at3 = For at3 bgm files"
+                "Crypt Type Switches:", "-txtbin = For text bin files", "-script = For class files", "-kelstr = For kelstr.bin files", "-at3 = For .at3 bgm files"
             };
 
+
+            if (args.Length == 1 && args.Contains("-h") || args.Contains("-?"))
+            {
+                Console.WriteLine($"\n{string.Join("\n", actionSwitchesMsgArray)}\n\n{ string.Join("\n", exampleMsgArray)}");
+                Console.ReadLine();
+                Environment.Exit(0);
+            }
 
             // Check length
             if (args.Length < 2)
