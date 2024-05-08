@@ -11,6 +11,7 @@ The program should be launched from command prompt with a function switch, a fil
 <br>``-txtbin`` - For handling text bin files
 <br>``-script`` - For handling class files
 <br>``-kelstr`` - For handling kelstr.bin files
+<br>``-at3`` - For handling .at3 bgm files
 
 <br>**Commandline usage examples:**
 <br>For Text bin files:
@@ -24,6 +25,10 @@ For class files:
 For kelstr.bin files:
 <br>`` DoCCryptTool.exe -d -kelstr "kelstr.bin" ``
 <br>`` DoCCryptTool.exe -e -kelstr "kelstr.bin" ``
+
+For .at3 bgm files:
+<br>`` DoCCryptTool.exe -d -at3 "bgm_004.at3" ``
+<br>`` DoCCryptTool.exe -e -at3 "bgm_004.at3" ``
 
 ## Credits
 [Shademp](https://github.com/Shademp) - Decryption assembly algorithm, format research and general support
