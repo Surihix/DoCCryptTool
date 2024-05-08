@@ -31,4 +31,5 @@ For .at3 bgm files:
 <br>`` DoCCryptTool.exe -e -at3 "bgm_004.at3" ``
 
 ## Credits
-[Shademp](https://github.com/Shademp) - Decryption assembly algorithm, format research and general support
+[Shademp](https://github.com/Shademp) - Decryption assembly algorithm for txtbin, class, and kelstr.bin files and for general support
+<br>[bnnm](https://github.com/bnnm) - .at3 bgm file decryption
